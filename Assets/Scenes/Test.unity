@@ -324,7 +324,7 @@ MonoBehaviour:
   moveSpeed: 5
   rollingSpeed: 10
   rollingTime: 500
-  rollingDelay: 300
+  rollingDelay: 200
   rigidbody: {fileID: 746977575}
   animator: {fileID: 746977578}
 --- !u!95 &746977578
