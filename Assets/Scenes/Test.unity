@@ -322,6 +322,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  rollingSpeed: 10
+  rollingTime: 500
+  rollingDelay: 300
   rigidbody: {fileID: 746977575}
   animator: {fileID: 746977578}
 --- !u!95 &746977578
