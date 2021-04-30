@@ -62,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
 
   private bool isAttacking = false;
   private int attackType = 0; // 1 light-1, 2 light-2, 3 heavy
+  private bool isAttackRight = true;
   private DateTime attackStart;
   private DateTime attackEnd;
 
@@ -98,6 +99,9 @@ public class PlayerMovement : MonoBehaviour
 
     if (lightAttack || heavyAttack)
     {
+      Rect bounds = new Rect(0, 0, Screen.width / 2, Screen.height);
+      isAttackRight = !bounds.Contains(Input.mousePosition);
+
       attackStart = DateTime.Now.AddMilliseconds(attackTime);
       isAttacking = true;
     }
@@ -114,8 +118,14 @@ public class PlayerMovement : MonoBehaviour
     // Registering direction, movement and speed
     movement.x = Input.GetAxisRaw("Horizontal");
     movement.y = Input.GetAxisRaw("Vertical");
+
+    // Pre param conditions
     if (movement.x != 0)
       isRight = movement.x >= 0;
+    if (attackType != 0)
+      isRight = isAttackRight;
+
+    // Setting animator parameters
     animator.SetFloat("Horizontal", movement.x);
     animator.SetFloat("Speed", movement.sqrMagnitude);
     animator.SetFloat("IsRight", isRight ? 1 : -1);
