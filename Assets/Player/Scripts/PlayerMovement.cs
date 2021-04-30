@@ -16,9 +16,9 @@ public class PlayerMovement : MonoBehaviour
   #endregion
 
   #region Rolling
-  public float rollingSpeed = 10f;
-  public float rollingTime = 500f;
-  public float rollingDelay = 800f;
+  private readonly float rollingSpeed = 10f;
+  private readonly float rollingTime = 500f;
+  private readonly float rollingDelay = 800f;
 
   private bool isRolling = false;
   private DateTime rollingStart;
@@ -54,8 +54,11 @@ public class PlayerMovement : MonoBehaviour
   #endregion
 
   #region Attacking
-  public float lightAttackDelay = 100f;
-  public float heavyAttackDelay = 300f;
+  private readonly float lightAttackDelay = 100f;
+  private readonly float lightAttackTime = 300f;
+
+  private readonly float heavyAttackDelay = 300f;
+  private readonly float heavyAttackTime = 500f;
 
   private bool isAttacking = false;
   private int attackType = 0; // 1 light-1, 2 light-2, 3 heavy
@@ -84,12 +87,12 @@ public class PlayerMovement : MonoBehaviour
     if (lightAttack)
     {
       attackType = 1;
-      attackTime = 100f;
+      attackTime = lightAttackTime;
     }
     else if (heavyAttack)
     {
       attackType = 3;
-      attackTime = 250f;
+      attackTime = heavyAttackTime;
     }
 
 
@@ -115,8 +118,8 @@ public class PlayerMovement : MonoBehaviour
       isRight = movement.x >= 0;
     animator.SetFloat("Horizontal", movement.x);
     animator.SetFloat("Speed", movement.sqrMagnitude);
-    animator.SetBool("IsRight", isRight);
-    animator.SetInteger("Attack", attackType);
+    animator.SetFloat("IsRight", isRight ? 1 : -1);
+    animator.SetFloat("Attack", attackType);
     animator.SetBool("IsRolling", false);
   }
 
