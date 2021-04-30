@@ -1,7 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -18,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
   #region Rolling
   private readonly float rollingSpeed = 10f;
   private readonly float rollingTime = 500f;
-  private readonly float rollingDelay = 800f;
+  private readonly float rollingDelay = 400f;
 
   private bool isRolling = false;
   private DateTime rollingStart;
@@ -54,6 +52,11 @@ public class PlayerMovement : MonoBehaviour
   #endregion
 
   #region Attacking
+  public GameObject swing;
+
+  private readonly float swingSpeed = 50f;
+  private readonly float swingTime = 0.5f;
+
   private readonly float lightAttackDelay = 100f;
   private readonly float lightAttackTime = 300f;
 
@@ -102,9 +105,29 @@ public class PlayerMovement : MonoBehaviour
       Rect bounds = new Rect(0, 0, Screen.width / 2, Screen.height);
       isAttackRight = !bounds.Contains(Input.mousePosition);
 
+      GameObject projectile = Instantiate(swing, transform.position, GetMouseAngle());
+      Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+      Vector2 direction = projectile.transform.forward * swingSpeed;
+      Debug.Log(direction);
+      rb.AddForce(direction, ForceMode2D.Impulse);
+      Destroy(projectile, swingTime);
+
       attackStart = DateTime.Now.AddMilliseconds(attackTime);
       isAttacking = true;
     }
+  }
+
+
+  private Quaternion GetMouseAngle()
+  {
+    // Code from: https://answers.unity.com/questions/395375/2d-mouse-angle-in-360-degrees.html
+    Vector3 mouse_pos = Input.mousePosition;
+    mouse_pos.z = 5.23f; //The distance between the camera and object
+    Vector3 object_pos = Camera.main.WorldToScreenPoint(transform.position);
+    mouse_pos.x = mouse_pos.x - object_pos.x;
+    mouse_pos.y = mouse_pos.y - object_pos.y;
+    float angle = Mathf.Atan2(mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
+    return Quaternion.Euler(new Vector3(0, 0, angle));
   }
   #endregion
 
