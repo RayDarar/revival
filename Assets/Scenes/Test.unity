@@ -170,16 +170,31 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     source: {fileID: 0}
+    loop: 0
   - name: player-attack-2
     clip: {fileID: 8300000, guid: 3af73310fb45dbd4785e9b7661359156, type: 3}
     volume: 0.8
-    pitch: 1
+    pitch: 0.8
     source: {fileID: 0}
+    loop: 0
   - name: player-attack-3
     clip: {fileID: 8300000, guid: d92329edcf1efac4fadece7e38f131df, type: 3}
     volume: 0.8
     pitch: 1
     source: {fileID: 0}
+    loop: 0
+  - name: player-running
+    clip: {fileID: 8300000, guid: 17d512135dd08434b9fb31b284c524b1, type: 3}
+    volume: 0.6
+    pitch: 0.8
+    source: {fileID: 0}
+    loop: 1
+  - name: player-roll
+    clip: {fileID: 8300000, guid: 04ddd3138f865854c9f6219786d645fc, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

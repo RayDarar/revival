@@ -57,7 +57,6 @@ public class PlayerMovement : MonoBehaviour
   private readonly float swingSpeed = 2f;
   private readonly float swingTime = 0.5f;
 
-
   private float lightAttackDelay = 100f;
   private readonly float lightAttackDelayDefault = 100f;
   private readonly float lightComboDiff = 1.5f;
@@ -130,7 +129,6 @@ public class PlayerMovement : MonoBehaviour
       rb.AddForce(direction, ForceMode2D.Impulse);
       Destroy(projectile, swingTime);
 
-      // Play the swing sound
       FindObjectOfType<AudioManager>().Play(swingSound);
 
       attackStart = DateTime.Now.AddMilliseconds(attackTime);
@@ -153,14 +151,34 @@ public class PlayerMovement : MonoBehaviour
   }
   #endregion
 
+  #region Sounds
+  private void HandleSounds()
+  {
+    AudioManager manager = FindObjectOfType<AudioManager>();
+    if (isRolling)
+      manager.Play("player-roll");
+
+    if (isRolling || movement.sqrMagnitude < 0.1)
+      manager.Stop("player-running");
+    else
+      manager.Play("player-running");
+
+    if (attackType != 0)
+      manager.Play("player-attack-" + attackType);
+  }
+  #endregion
+
   #region Hooks
   public void Update()
   {
     HandleRolling();
+    HandleSounds();
 
     animator.SetBool("IsRolling", isRolling);
     if (isRolling) return;
+
     HandleAttacking();
+    HandleSounds();
     // Registering direction, movement and speed
     movement.x = Input.GetAxisRaw("Horizontal");
     movement.y = Input.GetAxisRaw("Vertical");
