@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
   #region Movement
-  public float moveSpeed = 5f;
+  public float moveSpeed = 2.5f;
 
   public new Rigidbody2D rigidbody;
   public Animator animator;
@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
   #endregion
 
   #region Rolling
-  private readonly float rollingSpeed = 10f;
+  private readonly float rollingSpeed = 5f;
   private readonly float rollingTime = 500f;
   private readonly float rollingDelay = 400f;
 
@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
   #region Attacking
   public GameObject swing;
 
-  private readonly float swingSpeed = 50f;
+  private readonly float swingSpeed = 25f;
   private readonly float swingTime = 0.5f;
 
   private readonly float lightAttackDelay = 100f;
