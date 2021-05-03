@@ -47,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
     if (Math.Abs(movement.x) == Math.Abs(movement.y))
       speed /= 1.33f;
 
+    if (movement.x == 0 && movement.y == 0)
+      movement.x = isRight ? 1 : -1;
+
     rigidbody.MovePosition(rigidbody.position + movement * speed);
   }
   #endregion
@@ -54,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
   #region Attacking
   public GameObject swing;
 
-  private readonly float swingSpeed = 2f;
+  private readonly float swingSpeed = 0.2f;
   private readonly float swingTime = 0.5f;
 
   private float lightAttackDelay = 100f;
@@ -171,14 +174,14 @@ public class PlayerMovement : MonoBehaviour
   #region Hooks
   public void Update()
   {
-    HandleRolling();
-    HandleSounds();
 
     animator.SetBool("IsRolling", isRolling);
     if (isRolling) return;
 
+    HandleRolling();
     HandleAttacking();
     HandleSounds();
+
     // Registering direction, movement and speed
     movement.x = Input.GetAxisRaw("Horizontal");
     movement.y = Input.GetAxisRaw("Vertical");
