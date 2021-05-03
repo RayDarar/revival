@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
   #region Attacking
   public GameObject swing;
 
-  private readonly float swingSpeed = 25f;
+  private readonly float swingSpeed = 2f;
   private readonly float swingTime = 0.5f;
 
   private readonly float lightAttackDelay = 100f;
@@ -107,8 +107,7 @@ public class PlayerMovement : MonoBehaviour
 
       GameObject projectile = Instantiate(swing, transform.position, GetMouseAngle());
       Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-      Vector2 direction = projectile.transform.forward * swingSpeed;
-      Debug.Log(direction);
+      Vector2 direction = projectile.transform.right * swingSpeed;
       rb.AddForce(direction, ForceMode2D.Impulse);
       Destroy(projectile, swingTime);
 
