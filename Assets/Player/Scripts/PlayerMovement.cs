@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
   {
     bool spacePressed = Input.GetKeyDown(KeyCode.Space);
     bool rollingAvailable = (DateTime.Now - rollingEnd).TotalMilliseconds > rollingDelay;
-    if (!isRolling && spacePressed && rollingAvailable)
+    if (!isRolling && spacePressed && rollingAvailable && !isAttacking)
     {
       isRolling = true;
       if (movement.x == 0)
