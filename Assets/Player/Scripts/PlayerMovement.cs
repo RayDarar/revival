@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
   private readonly float lightComboDiff = 1.5f;
   private readonly float lightAttackTime = 300f;
 
-  private readonly float heavyAttackDelay = 300f;
+  private readonly float heavyAttackDelay = 250f;
   private readonly float heavyAttackTime = 500f;
 
   private bool isAttacking = false;
@@ -146,6 +146,7 @@ public class PlayerMovement : MonoBehaviour
   }
   #endregion
 
+  #region Hooks
   public void Update()
   {
     HandleRolling();
@@ -183,4 +184,5 @@ public class PlayerMovement : MonoBehaviour
       speed /= 1.5f;
     rigidbody.MovePosition(rigidbody.position + movement * speed);
   }
+  #endregion
 }
