@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
   #region Movement
-  public float moveSpeed = 2.5f;
+  private readonly float moveSpeed = 2.5f;
 
   public new Rigidbody2D rigidbody;
   public Animator animator;
@@ -57,7 +57,10 @@ public class PlayerMovement : MonoBehaviour
   private readonly float swingSpeed = 2f;
   private readonly float swingTime = 0.5f;
 
-  private readonly float lightAttackDelay = 100f;
+
+  private float lightAttackDelay = 100f;
+  private readonly float lightAttackDelayDefault = 100f;
+  private readonly float lightComboDiff = 1.5f;
   private readonly float lightAttackTime = 300f;
 
   private readonly float heavyAttackDelay = 300f;
@@ -65,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
   private bool isAttacking = false;
   private int attackType = 0; // 1 light-1, 2 light-2, 3 heavy
+  private int lastAttackType = 0;
   private bool isAttackRight = true;
   private DateTime attackStart;
   private DateTime attackEnd;
@@ -90,13 +94,24 @@ public class PlayerMovement : MonoBehaviour
     float attackTime = 0f;
     if (lightAttack)
     {
-      attackType = 1;
-      attackTime = lightAttackTime;
+      if (lastAttackType == 1)
+      {
+        attackType = 2;
+        attackTime = lightAttackTime;
+        lightAttackDelay *= lightComboDiff;
+      }
+      else
+      {
+        attackType = 1;
+        attackTime = lightAttackTime;
+        lightAttackDelay /= lightComboDiff;
+      }
     }
     else if (heavyAttack)
     {
       attackType = 3;
       attackTime = heavyAttackTime;
+      lightAttackDelay = lightAttackDelayDefault;
     }
 
 
@@ -113,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
 
       attackStart = DateTime.Now.AddMilliseconds(attackTime);
       isAttacking = true;
+      lastAttackType = attackType;
     }
   }
 
