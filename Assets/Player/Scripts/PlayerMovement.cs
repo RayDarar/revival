@@ -92,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
     bool heavyAttack = Input.GetMouseButtonDown(1) && delta > heavyAttackDelay;
 
     float attackTime = 0f;
+    string swingSound = "";
     if (lightAttack)
     {
       if (lastAttackType == 1)
@@ -99,12 +100,14 @@ public class PlayerMovement : MonoBehaviour
         attackType = 2;
         attackTime = lightAttackTime;
         lightAttackDelay *= lightComboDiff;
+        swingSound = "player-attack-2";
       }
       else
       {
         attackType = 1;
         attackTime = lightAttackTime;
         lightAttackDelay /= lightComboDiff;
+        swingSound = "player-attack-1";
       }
     }
     else if (heavyAttack)
@@ -112,19 +115,23 @@ public class PlayerMovement : MonoBehaviour
       attackType = 3;
       attackTime = heavyAttackTime;
       lightAttackDelay = lightAttackDelayDefault;
+      swingSound = "player-attack-3";
     }
-
 
     if (lightAttack || heavyAttack)
     {
       Rect bounds = new Rect(0, 0, Screen.width / 2, Screen.height);
       isAttackRight = !bounds.Contains(Input.mousePosition);
 
+      // Send swing projectile towards the mouse
       GameObject projectile = Instantiate(swing, transform.position, GetMouseAngle());
       Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
       Vector2 direction = projectile.transform.right * swingSpeed;
       rb.AddForce(direction, ForceMode2D.Impulse);
       Destroy(projectile, swingTime);
+
+      // Play the swing sound
+      FindObjectOfType<AudioManager>().Play(swingSound);
 
       attackStart = DateTime.Now.AddMilliseconds(attackTime);
       isAttacking = true;
