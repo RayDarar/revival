@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
   #region Attacking
   public GameObject swing;
 
-  private readonly float swingSpeed = 0.2f;
+  private readonly float swingSpeed = 0.01f;
   private readonly float swingTime = 0.5f;
 
   private float lightAttackDelay = 100f;
