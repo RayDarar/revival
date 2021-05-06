@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour {
 
   #region Sounds
   private void HandleSounds() {
-    AudioManager manager = FindObjectOfType<AudioManager>();
+    AudioManager manager = AudioManager.Instance;
     if (isRolling)
       manager.Play("player-roll");
 

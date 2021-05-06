@@ -1,26 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
-{
+public class AudioManager : GenericManager<AudioManager> {
   public Sound[] sounds;
 
-  public static AudioManager instance;
-
-  public void Awake()
-  {
-    if (instance == null)
-      instance = this;
-    else
-    {
-      Destroy(gameObject);
-      return;
-    }
-
-    DontDestroyOnLoad(gameObject);
-
-    foreach (Sound sound in sounds)
-    {
+  public override void SetupAwake() {
+    foreach (Sound sound in sounds) {
       AudioSource s = gameObject.AddComponent<AudioSource>();
 
       s.loop = sound.loop;
@@ -31,15 +16,13 @@ public class AudioManager : MonoBehaviour
     }
   }
 
-  public void Play(string name)
-  {
+  public void Play(string name) {
     Sound sound = Array.Find(sounds, s => s.name == name);
     if (sound != null && !sound.source.isPlaying)
       sound.source.Play();
   }
 
-  public void Stop(string name)
-  {
+  public void Stop(string name) {
     Sound sound = Array.Find(sounds, s => s.name == name);
     if (sound != null && sound.source.isPlaying)
       sound.source.Stop();

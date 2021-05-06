@@ -2,12 +2,16 @@
 using UnityEngine.AI;
 
 public class SkeletonController : MonoBehaviour {
-  private readonly float lookRadius = 8f;
+  private readonly float lookRadius = 6f;
   private NavMeshAgent agent;
+  private PlayerController player;
+
   void Start() {
     agent = GetComponent<NavMeshAgent>();
     agent.updateRotation = false;
     agent.updateUpAxis = false;
+
+    player = PlayerManager.Instance.player;
   }
 
   public void OnDrawGizmosSelected() {
@@ -16,6 +20,10 @@ public class SkeletonController : MonoBehaviour {
   }
 
   public void Update() {
-    agent.SetDestination(FindObjectOfType<PlayerController>().transform.position);
+    float dist = Vector2.Distance(transform.position, player.transform.position);
+
+    if (dist < lookRadius) {
+      agent.SetDestination(player.transform.position);
+    }
   }
 }
