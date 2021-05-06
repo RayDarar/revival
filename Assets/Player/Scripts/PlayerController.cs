@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
 
   #region Rolling
   private readonly float rollingSpeed = 5f;
-  private readonly float rollingTime = 500f;
+  private readonly float rollingTime = 550f;
   private readonly float rollingDelay = 400f;
 
   private bool isRolling = false;
@@ -163,7 +163,6 @@ public class PlayerController : MonoBehaviour {
   }
 
   public void Update() {
-
     animator.SetBool("IsRolling", isRolling);
     if (isRolling) return;
 
@@ -184,7 +183,7 @@ public class PlayerController : MonoBehaviour {
     // Setting animator parameters
     animator.SetFloat("Horizontal", movement.x);
     animator.SetFloat("Speed", movement.sqrMagnitude);
-    animator.SetFloat("IsRight", isRight ? 1 : -1);
+    RotateEntity.rotate(gameObject, isRight);
     animator.SetFloat("Attack", attackType);
     animator.SetBool("IsRolling", false);
   }
