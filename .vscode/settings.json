@@ -57,9 +57,5 @@
     "editor.defaultFormatter": "ms-dotnettools.csharp",
     "editor.tabSize": 2
   },
-  "cSpell.words": [
-    "Dont",
-    "Lerp",
-    "Mathf"
-  ]
+  "cSpell.words": ["Dont", "Lerp", "Mathf"]
 }

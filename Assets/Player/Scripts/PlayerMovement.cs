@@ -1,8 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
-{
+public class PlayerMovement : MonoBehaviour {
   #region Movement
   private readonly float moveSpeed = 2.5f;
 
@@ -22,23 +21,19 @@ public class PlayerMovement : MonoBehaviour
   private DateTime rollingStart;
   private DateTime rollingEnd;
 
-  private void HandleRolling()
-  {
+  private void HandleRolling() {
     bool spacePressed = Input.GetKeyDown(KeyCode.Space);
     bool rollingAvailable = (DateTime.Now - rollingEnd).TotalMilliseconds > rollingDelay;
-    if (!isRolling && spacePressed && rollingAvailable && !isAttacking)
-    {
+    if (!isRolling && spacePressed && rollingAvailable && !isAttacking) {
       isRolling = true;
       if (movement.x == 0)
         movement.x = isRight ? 1 : -1;
       rollingStart = DateTime.Now.AddMilliseconds(rollingTime);
     }
   }
-  private void PerformRolling()
-  {
+  private void PerformRolling() {
     double delta = (DateTime.Now - rollingStart).TotalMilliseconds;
-    if (delta > 0)
-    {
+    if (delta > 0) {
       isRolling = false;
       rollingEnd = DateTime.Now;
       return;
@@ -75,19 +70,17 @@ public class PlayerMovement : MonoBehaviour
   private DateTime attackStart;
   private DateTime attackEnd;
 
-  private void HandleAttacking()
-  {
-    if (isAttacking)
-    {
+  private void HandleAttacking() {
+    if (isAttacking) {
       double deltaStart = (DateTime.Now - attackStart).TotalMilliseconds;
-      if (deltaStart > 0)
-      {
+      if (deltaStart > 0) {
         attackType = 0;
         isAttacking = false;
         attackEnd = DateTime.Now;
       }
       return;
     }
+    if (isRolling) return;
     double delta = (DateTime.Now - attackEnd).TotalMilliseconds;
 
     bool lightAttack = Input.GetMouseButtonDown(0) && delta > lightAttackDelay;
@@ -95,33 +88,28 @@ public class PlayerMovement : MonoBehaviour
 
     float attackTime = 0f;
     string swingSound = "";
-    if (lightAttack)
-    {
-      if (lastAttackType == 1)
-      {
+    if (lightAttack) {
+      if (lastAttackType == 1) {
         attackType = 2;
         attackTime = lightAttackTime;
         lightAttackDelay *= lightComboDiff;
         swingSound = "player-attack-2";
       }
-      else
-      {
+      else {
         attackType = 1;
         attackTime = lightAttackTime;
         lightAttackDelay /= lightComboDiff;
         swingSound = "player-attack-1";
       }
     }
-    else if (heavyAttack)
-    {
+    else if (heavyAttack) {
       attackType = 3;
       attackTime = heavyAttackTime;
       lightAttackDelay = lightAttackDelayDefault;
       swingSound = "player-attack-3";
     }
 
-    if (lightAttack || heavyAttack)
-    {
+    if (lightAttack || heavyAttack) {
       Rect bounds = new Rect(0, 0, Screen.width / 2, Screen.height);
       isAttackRight = !bounds.Contains(Input.mousePosition);
 
@@ -140,9 +128,7 @@ public class PlayerMovement : MonoBehaviour
     }
   }
 
-
-  private Quaternion GetMouseAngle()
-  {
+  private Quaternion GetMouseAngle() {
     // Code from: https://answers.unity.com/questions/395375/2d-mouse-angle-in-360-degrees.html
     Vector3 mouse_pos = Input.mousePosition;
     mouse_pos.z = 5.23f; //The distance between the camera and object
@@ -155,8 +141,7 @@ public class PlayerMovement : MonoBehaviour
   #endregion
 
   #region Sounds
-  private void HandleSounds()
-  {
+  private void HandleSounds() {
     AudioManager manager = FindObjectOfType<AudioManager>();
     if (isRolling)
       manager.Play("player-roll");
@@ -172,8 +157,7 @@ public class PlayerMovement : MonoBehaviour
   #endregion
 
   #region Hooks
-  public void Update()
-  {
+  public void Update() {
 
     animator.SetBool("IsRolling", isRolling);
     if (isRolling) return;
@@ -200,10 +184,8 @@ public class PlayerMovement : MonoBehaviour
     animator.SetBool("IsRolling", false);
   }
 
-  public void FixedUpdate()
-  {
-    if (isRolling)
-    {
+  public void FixedUpdate() {
+    if (isRolling) {
       PerformRolling();
       return;
     }

@@ -1,0 +1,8 @@
+{
+  "FormattingOptions": {
+    "NewLinesForBracesInMethods": false,
+    "NewLinesForBracesInControlBlocks": false,
+    "NewLinesForBracesInProperties": false,
+    "NewLinesForBracesInTypes": false
+  }
+}
