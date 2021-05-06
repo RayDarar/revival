@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour {
       rb.AddForce(direction, ForceMode2D.Impulse);
       Destroy(projectile, swingTime);
 
-      FindObjectOfType<AudioManager>().Play(swingSound);
+      AudioManager.Instance.Play(swingSound);
 
       attackStart = DateTime.Now.AddMilliseconds(attackTime);
       isAttacking = true;
