@@ -16,6 +16,6 @@ public class SkeletonController : MonoBehaviour {
   }
 
   public void Update() {
-    agent.SetDestination(FindObjectOfType<PlayerMovement>().transform.position);
+    agent.SetDestination(FindObjectOfType<PlayerController>().transform.position);
   }
 }

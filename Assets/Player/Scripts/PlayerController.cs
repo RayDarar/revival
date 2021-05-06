@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
   #region Movement
   private readonly float moveSpeed = 2.5f;
 
-  public new Rigidbody2D rigidbody;
-  public Animator animator;
+  private new Rigidbody2D rigidbody;
+  private Animator animator;
 
   private Vector2 movement;
   private bool isRight = true;
@@ -157,6 +157,11 @@ public class PlayerMovement : MonoBehaviour {
   #endregion
 
   #region Hooks
+  public void Start() {
+    rigidbody = GetComponent<Rigidbody2D>();
+    animator = GetComponent<Animator>();
+  }
+
   public void Update() {
 
     animator.SetBool("IsRolling", isRolling);

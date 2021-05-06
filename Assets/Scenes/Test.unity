@@ -14548,8 +14548,8 @@ GameObject:
   - component: {fileID: 706207177}
   - component: {fileID: 706207178}
   - component: {fileID: 706207179}
-  - component: {fileID: 706207181}
   - component: {fileID: 706207180}
+  - component: {fileID: 706207181}
   m_Layer: 0
   m_Name: Skeleton1
   m_TagString: Untagged
@@ -14722,6 +14722,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f115a1f66ec73f4ba98827f8f1d24bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &745478986 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8743366044629147698, guid: 877cee26823f7754e9b965a36ded1283,
+    type: 3}
+  m_PrefabInstance: {fileID: 8743366044972800279}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &745478987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745478986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d39f31fa93840e44a872d49321a3ce3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swing: {fileID: 3719119295342766261, guid: 4e15aa512a29c0d4e81d394ca037b28a, type: 3}
 --- !u!4 &746977574 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8743366044629147697, guid: 877cee26823f7754e9b965a36ded1283,
@@ -19865,5 +19884,6 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.118629456
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8743366044629147710, guid: 877cee26823f7754e9b965a36ded1283, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 877cee26823f7754e9b965a36ded1283, type: 3}

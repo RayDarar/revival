@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8743366044629147697}
   - component: {fileID: 8743366044629147711}
   - component: {fileID: 8743366044629147696}
-  - component: {fileID: 8743366044629147710}
   - component: {fileID: 8743366044629147709}
   - component: {fileID: 8743366044629147708}
+  - component: {fileID: 745478987}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -106,21 +106,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8743366044629147710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8743366044629147698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76fea9252140617469a86a3428dc59c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbody: {fileID: 8743366044629147696}
-  animator: {fileID: 8743366044629147709}
-  swing: {fileID: 3719119295342766261, guid: 4e15aa512a29c0d4e81d394ca037b28a, type: 3}
 --- !u!95 &8743366044629147709
 Animator:
   serializedVersion: 3
@@ -153,7 +138,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.019444197, y: -0.072760105}
+  m_Offset: {x: -0.010270268, y: -0.118629456}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -164,5 +149,18 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.45166618, y: 0.5953746}
+  m_Size: {x: 0.54340535, y: 1.0357232}
   m_EdgeRadius: 0
+--- !u!114 &745478987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8743366044629147698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d39f31fa93840e44a872d49321a3ce3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swing: {fileID: 3719119295342766261, guid: 4e15aa512a29c0d4e81d394ca037b28a, type: 3}
