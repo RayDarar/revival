@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
   private readonly float moveSpeed = 2.5f;
 
   private new Rigidbody2D rigidbody;
+  private new BoxCollider2D collider;
   private Animator animator;
 
   private Vector2 movement;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour {
     bool rollingAvailable = (DateTime.Now - rollingEnd).TotalMilliseconds > rollingDelay;
     if (!isRolling && spacePressed && rollingAvailable && !isAttacking) {
       isRolling = true;
+      gameObject.layer = 11; // PlayerNonCollisions
       if (movement.x == 0)
         movement.x = isRight ? 1 : -1;
       rollingStart = DateTime.Now.AddMilliseconds(rollingTime);
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour {
     double delta = (DateTime.Now - rollingStart).TotalMilliseconds;
     if (delta > 0) {
       isRolling = false;
+      gameObject.layer = 10; // PlayerCollisions
       rollingEnd = DateTime.Now;
       return;
     }
@@ -160,6 +163,7 @@ public class PlayerController : MonoBehaviour {
   public void Start() {
     rigidbody = GetComponent<Rigidbody2D>();
     animator = GetComponent<Animator>();
+    collider = GetComponent<BoxCollider2D>();
   }
 
   public void Update() {
