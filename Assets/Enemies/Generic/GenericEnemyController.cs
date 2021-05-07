@@ -60,9 +60,9 @@ public abstract class GenericEnemyController : MonoBehaviour {
   public abstract void SetupEnemy(GenericEnemyBuilder builder);
 
   public void MoveTowardsPlayerRadius() {
-    float dist = Vector2.Distance(transform.position, player.transform.position);
+    Vector2 diff = transform.position - player.transform.position;
 
-    if (dist < lookRadius) {
+    if (diff.sqrMagnitude < lookRadius * lookRadius) {
       agent.SetDestination(player.transform.position);
     }
   }
