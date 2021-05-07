@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -23,6 +24,9 @@ public abstract class GenericEnemyController : MonoBehaviour {
   public NavMeshAgent agent;
 
   [HideInInspector]
+  public Animator animator;
+
+  [HideInInspector]
   public PlayerController player;
 
   [HideInInspector]
@@ -30,6 +34,9 @@ public abstract class GenericEnemyController : MonoBehaviour {
 
   [HideInInspector]
   public float health;
+
+  [HideInInspector]
+  public bool isRight;
 
   public virtual void Awake() {
     SetupEnemy(new GenericEnemyBuilder(this));
@@ -39,6 +46,8 @@ public abstract class GenericEnemyController : MonoBehaviour {
     agent = GetComponent<NavMeshAgent>();
     agent.updateRotation = false;
     agent.updateUpAxis = false;
+
+    animator = GetComponent<Animator>();
 
     player = PlayerManager.Instance.player;
   }
@@ -56,5 +65,10 @@ public abstract class GenericEnemyController : MonoBehaviour {
     if (dist < lookRadius) {
       agent.SetDestination(player.transform.position);
     }
+  }
+
+  public void UpdateIsRight() {
+    if (agent.velocity.x != 0 && Math.Abs(agent.velocity.x) > 0.5f)
+      isRight = agent.velocity.x >= 0;
   }
 }

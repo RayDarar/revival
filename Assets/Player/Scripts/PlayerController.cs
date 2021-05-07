@@ -185,7 +185,6 @@ public class PlayerController : MonoBehaviour {
       isRight = isAttackRight;
 
     // Setting animator parameters
-    animator.SetFloat("Horizontal", movement.x);
     animator.SetFloat("Speed", movement.sqrMagnitude);
     RotateEntity.rotate(gameObject, isRight);
     animator.SetFloat("Attack", attackType);
