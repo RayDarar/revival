@@ -1,9 +1,12 @@
 ﻿using System;
+using UnityEngine;
 
 public class SkeletonController : GenericEnemyController {
   #region Attacking
   private bool isAttacking = false;
+  private bool isPlayerHit = false;
   private float attackTime = 750f;
+  private float attackHitTime = -200f;
   private float attackDelay = 1000f;
   private DateTime attackEnd;
 
@@ -19,6 +22,10 @@ public class SkeletonController : GenericEnemyController {
     double attackDelta = (DateTime.Now - attackEnd).TotalMilliseconds;
     if (isAttacking && attackDelta > 0) {
       isAttacking = false;
+      isPlayerHit = false;
+    }
+    else if (isAttacking && !isPlayerHit && attackDelta > attackHitTime) {
+      isPlayerHit = true;
       UpdatePlayerDifference();
 
       if (diff.sqrMagnitude < attackRadius * attackRadius) {

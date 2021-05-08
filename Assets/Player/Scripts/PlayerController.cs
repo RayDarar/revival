@@ -22,12 +22,20 @@ public class PlayerController : MonoBehaviour {
   private DateTime rollingStart;
   private DateTime rollingEnd;
 
+  private void MakeVulnerable() {
+    gameObject.layer = 10; // PlayerCollisions    
+  }
+  private void MakeNotVulnerable() {
+    gameObject.layer = 11; // PlayerNonCollisions
+  }
+
   private void HandleRolling() {
     bool spacePressed = Input.GetKeyDown(KeyCode.Space);
     bool rollingAvailable = (DateTime.Now - rollingEnd).TotalMilliseconds > rollingDelay;
     if (!isRolling && spacePressed && rollingAvailable && !isAttacking) {
       isRolling = true;
-      gameObject.layer = 11; // PlayerNonCollisions
+      MakeNotVulnerable();
+      isHit = false;
       if (movement.x == 0)
         movement.x = isRight ? 1 : -1;
       rollingStart = DateTime.Now.AddMilliseconds(rollingTime);
@@ -37,7 +45,7 @@ public class PlayerController : MonoBehaviour {
     double delta = (DateTime.Now - rollingStart).TotalMilliseconds;
     if (delta > 0) {
       isRolling = false;
-      gameObject.layer = 10; // PlayerCollisions
+      MakeVulnerable();
       rollingEnd = DateTime.Now;
       return;
     }
@@ -135,6 +143,7 @@ public class PlayerController : MonoBehaviour {
 
       attackStart = DateTime.Now.AddMilliseconds(attackTime);
       isAttacking = true;
+      isHit = false;
       lastAttackType = attackType;
     }
   }
@@ -198,6 +207,7 @@ public class PlayerController : MonoBehaviour {
     animator.SetFloat("Speed", movement.sqrMagnitude);
     RotateEntity.rotate(gameObject, isRight);
     animator.SetFloat("Attack", attackType);
+    animator.SetBool("IsHit", isHit);
     animator.SetBool("IsRolling", false);
   }
 
@@ -216,13 +226,19 @@ public class PlayerController : MonoBehaviour {
   #region TakeHit
   private float maxHealth = 100f;
   private float health;
+  private bool isHit = false;
 
   public void TakeHit(float damage) {
     if (gameObject.layer == 11) return; // Rolling
 
     health -= damage;
-    Debug.Log("Player Hit! Health: " + health);
+    isHit = true;
+    Invoke("StopIsHit", 0.25f);
     if (health <= 0) Debug.Log("Game Over!");
+  }
+
+  public void StopIsHit() {
+    isHit = false;
   }
   #endregion
 }
