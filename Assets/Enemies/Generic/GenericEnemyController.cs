@@ -17,6 +17,11 @@ public class GenericEnemyBuilder {
     controller.health = value;
     return this;
   }
+
+  public GenericEnemyBuilder SetAttackRadius(float value) {
+    controller.attackRadius = value;
+    return this;
+  }
 }
 
 public abstract class GenericEnemyController : MonoBehaviour {
@@ -33,11 +38,18 @@ public abstract class GenericEnemyController : MonoBehaviour {
   public float lookRadius;
 
   [HideInInspector]
+  public float attackRadius;
+
+  [HideInInspector]
+  public Vector2 diff;
+
+  [HideInInspector]
   public float health;
 
   [HideInInspector]
   public bool isRight;
 
+  public abstract void SetupEnemy(GenericEnemyBuilder builder);
   public virtual void Awake() {
     SetupEnemy(new GenericEnemyBuilder(this));
   }
@@ -52,16 +64,23 @@ public abstract class GenericEnemyController : MonoBehaviour {
     player = PlayerManager.Instance.player;
   }
 
-  public void OnDrawGizmosSelected() {
-    Gizmos.color = Color.red;
-    Gizmos.DrawWireSphere(transform.position, lookRadius);
+  public virtual void Update() {
+    UpdatePlayerDifference();
+    MoveTowardsPlayerRadius();
+    UpdateIsRight();
+
+    RotateEntity.rotate(gameObject, isRight);
   }
 
-  public abstract void SetupEnemy(GenericEnemyBuilder builder);
+  public void OnDrawGizmosSelected() {
+    Gizmos.color = Color.yellow;
+    Gizmos.DrawWireSphere(transform.position, lookRadius);
+
+    Gizmos.color = Color.red;
+    Gizmos.DrawWireSphere(transform.position, attackRadius);
+  }
 
   public void MoveTowardsPlayerRadius() {
-    Vector2 diff = transform.position - player.transform.position;
-
     if (diff.sqrMagnitude < lookRadius * lookRadius) {
       agent.SetDestination(player.transform.position);
     }
@@ -70,5 +89,9 @@ public abstract class GenericEnemyController : MonoBehaviour {
   public void UpdateIsRight() {
     if (agent.velocity.x != 0 && Math.Abs(agent.velocity.x) > 0.5f)
       isRight = agent.velocity.x >= 0;
+  }
+
+  public void UpdatePlayerDifference() {
+    diff = transform.position - player.transform.position;
   }
 }
