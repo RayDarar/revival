@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
   #region Movement
-  private readonly float moveSpeed = 2.5f;
+  private readonly float moveSpeed = 2f;
 
   private new Rigidbody2D rigidbody;
   private new BoxCollider2D collider;
@@ -217,6 +217,9 @@ public class PlayerController : MonoBehaviour {
       return;
     }
     float speed = moveSpeed * Time.fixedDeltaTime;
+
+    if (Math.Abs(movement.x) == Math.Abs(movement.y))
+      speed /= 1.2f;
     if (isAttacking)
       speed /= 1.5f;
     rigidbody.MovePosition(rigidbody.position + movement * speed);
@@ -227,14 +230,22 @@ public class PlayerController : MonoBehaviour {
   private float maxHealth = 100f;
   private float health;
   private bool isHit = false;
+  private bool isDead = false;
 
   public void TakeHit(float damage) {
+    if (isDead) return;
     if (gameObject.layer == 11) return; // Rolling
 
     health -= damage;
     isHit = true;
     Invoke("StopIsHit", 0.25f);
-    if (health <= 0) Debug.Log("Game Over!");
+    if (health <= 0) {
+      isDead = true;
+      this.enabled = false;
+      collider.enabled = false;
+      animator.SetBool("IsDead", isDead);
+      GameManager.Instance.GameOver();
+    }
   }
 
   public void StopIsHit() {
