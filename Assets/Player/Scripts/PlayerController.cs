@@ -68,10 +68,18 @@ public class PlayerController : MonoBehaviour {
 
   private bool isAttacking = false;
   private int attackType = 0; // 1 light-1, 2 light-2, 3 heavy
-  private int lastAttackType = 0;
   private bool isAttackRight = true;
   private DateTime attackStart;
   private DateTime attackEnd;
+
+  [HideInInspector]
+  public int lastAttackType = 0;
+
+  [HideInInspector]
+  public float baseAttackDamage = 5f;
+
+  [HideInInspector]
+  public float heavyAttackMultiplier = 1.5f;
 
   private void HandleAttacking() {
     if (isAttacking) {
@@ -164,6 +172,8 @@ public class PlayerController : MonoBehaviour {
     rigidbody = GetComponent<Rigidbody2D>();
     animator = GetComponent<Animator>();
     collider = GetComponent<BoxCollider2D>();
+
+    health = maxHealth;
   }
 
   public void Update() {
@@ -200,6 +210,19 @@ public class PlayerController : MonoBehaviour {
     if (isAttacking)
       speed /= 1.5f;
     rigidbody.MovePosition(rigidbody.position + movement * speed);
+  }
+  #endregion
+
+  #region TakeHit
+  private float maxHealth = 100f;
+  private float health;
+
+  public void TakeHit(float damage) {
+    if (gameObject.layer == 11) return; // Rolling
+
+    health -= damage;
+    Debug.Log("Player Hit! Health: " + health);
+    if (health <= 0) Debug.Log("Game Over!");
   }
   #endregion
 }

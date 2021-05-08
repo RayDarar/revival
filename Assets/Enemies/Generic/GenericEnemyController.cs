@@ -94,4 +94,11 @@ public abstract class GenericEnemyController : MonoBehaviour {
   public void UpdatePlayerDifference() {
     diff = transform.position - player.transform.position;
   }
+
+  public void TakeHit(float damage) {
+    health -= damage;
+    Debug.Log(this.name + "Hit! Health: " + health);
+    if (health <= 0)
+      Debug.Log(this.name + "Is Dead!");
+  }
 }

@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 3719119295342766257}
   - component: {fileID: 3719119295342766258}
   - component: {fileID: 3719119295342766259}
+  - component: {fileID: -2452238699724247428}
   m_Layer: 13
   m_Name: Swing
   m_TagString: PlayerProjectile
@@ -223,3 +224,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-2452238699724247428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3719119295342766261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f146e46b9126d7445aa0a282c040cd01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
