@@ -40,11 +40,10 @@ public class SkeletonController : GenericEnemyController {
 
     PerformAttack();
 
-    animator.SetFloat("Speed", agent.velocity.sqrMagnitude);
     animator.SetBool("IsAttacking", isAttacking);
   }
 
   public override void SetupEnemy(GenericEnemyBuilder builder) {
-    builder.SetLookRadius(6f).SetAttackRadius(2f).SetHealth(100f);
+    builder.SetLookRadius(6f).SetAttackRadius(1.8f).SetHealth(100f);
   }
 }
