@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1182976597}
   m_Layer: 0
   m_Name: Point Light 2D
-  m_TagString: Untagged
+  m_TagString: PlayerLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -237,3 +237,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swing: {fileID: 3719119295342766261, guid: 4e15aa512a29c0d4e81d394ca037b28a, type: 3}
+  lastAttackType: 0
+  baseAttackDamage: 5
+  heavyAttackMultiplier: 1.5

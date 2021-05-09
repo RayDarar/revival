@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerProjectile
   - HealthCell
+  - PlayerLight
   layers:
   - Default
   - TransparentFX

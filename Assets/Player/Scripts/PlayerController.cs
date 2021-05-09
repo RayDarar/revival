@@ -259,11 +259,11 @@ public class PlayerController : MonoBehaviour {
   }
 
   public void UpdateHealthBar() {
-    double threshold = Math.Floor(health / maxHealth * 10);
+    double threshold = Math.Round(health / maxHealth * 10);
 
     for (int i = 0; i < healthBarCells.Length; i++) {
       GameObject cell = healthBarCells[i];
-      cell.SetActive(i <= threshold && threshold != 0);
+      cell.SetActive(i <= threshold - 1 && threshold != 0);
     }
   }
   #endregion
