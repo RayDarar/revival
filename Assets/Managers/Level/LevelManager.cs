@@ -43,18 +43,23 @@ public class LevelManager : GenericManager<LevelManager> {
     GameObject[] enemies = currentLevel.enemies.OrderBy(e => System.Guid.NewGuid()).Take(currentLevel.enemyPerWave).ToArray();
 
     foreach (var enemy in enemies) {
-      var obj = Instantiate(enemy, GetRandomLocation(), enemy.transform.rotation);
-      var controller = obj.GetComponent<GenericEnemyController>();
-      var light = obj.GetComponentInChildren<Light2D>();
-      controller.enabled = false;
-      yield return new WaitForSeconds(1.5f);
-      controller.enabled = true;
-      light.enabled = false;
-      obj.transform.rotation = enemy.transform.rotation;
+      StartCoroutine(SpawnEnemy(enemy));
+      yield return new WaitForSeconds(0.3f);
     }
 
     enemiesCount = enemies.Length;
     GameManager.Instance.wave++;
+  }
+
+  public IEnumerator SpawnEnemy(GameObject enemy) {
+    var obj = Instantiate(enemy, GetRandomLocation(), enemy.transform.rotation);
+    var controller = obj.GetComponent<GenericEnemyController>();
+    var light = obj.GetComponentInChildren<Light2D>();
+    controller.enabled = false;
+    yield return new WaitForSeconds(1.5f);
+    controller.enabled = true;
+    light.enabled = false;
+    obj.transform.rotation = enemy.transform.rotation;
   }
 
   public Vector3 GetRandomLocation() {
@@ -70,6 +75,10 @@ public class LevelManager : GenericManager<LevelManager> {
     return point;
   }
 
+  public void GetReward() {
+    Debug.Log("Reward taken!");
+  }
+
   public void DecreaseEnemyCount() {
     enemiesCount--;
 
@@ -78,7 +87,7 @@ public class LevelManager : GenericManager<LevelManager> {
       return;
     }
     else if (enemiesCount == 0 && GameManager.Instance.wave == currentLevel.waves) {
-      Debug.Log("Level cleared!");
+      GetReward();
     }
   }
 }

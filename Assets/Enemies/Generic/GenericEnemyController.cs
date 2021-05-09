@@ -113,6 +113,8 @@ public abstract class GenericEnemyController : MonoBehaviour {
 
   [HideInInspector]
   public bool isHit = false;
+
+  [HideInInspector]
   public bool isDead = false;
 
   public void TakeHit(float damage) {

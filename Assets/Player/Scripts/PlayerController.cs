@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
   #region Movement
-  private readonly float moveSpeed = 2f;
+  [HideInInspector]
+  public float moveSpeed;
 
   private new Rigidbody2D rigidbody;
   private new BoxCollider2D collider;
@@ -85,10 +86,10 @@ public class PlayerController : MonoBehaviour {
   public int lastAttackType = 0;
 
   [HideInInspector]
-  public float baseAttackDamage = 5f;
+  public float baseAttackDamage;
 
   [HideInInspector]
-  public float heavyAttackMultiplier = 1.5f;
+  public float heavyAttackMultiplier;
 
   private void HandleAttacking() {
     if (isAttacking) {
@@ -183,7 +184,7 @@ public class PlayerController : MonoBehaviour {
     animator = GetComponent<Animator>();
     collider = GetComponent<BoxCollider2D>();
 
-    health = maxHealth;
+    GameManager.Instance.SetupPlayer(this);
 
     healthBarCells = GameObject.FindGameObjectsWithTag("HealthCell");
     healthText = GameObject.FindGameObjectWithTag("PlayerHealth").GetComponent<TextMeshProUGUI>();
@@ -232,8 +233,12 @@ public class PlayerController : MonoBehaviour {
   #endregion
 
   #region Hit Death And Damage
-  private float maxHealth = 100f;
-  private float health;
+  [HideInInspector]
+  public float maxHealth;
+
+  [HideInInspector]
+  public float health;
+
   private bool isHit = false;
   private bool isDead = false;
 
@@ -273,5 +278,10 @@ public class PlayerController : MonoBehaviour {
 
     healthText.text = $"{Math.Round(health)}/{Math.Round(maxHealth)}";
   }
+  #endregion
+
+  #region Coins
+  [HideInInspector]
+  public int coins;
   #endregion
 }
