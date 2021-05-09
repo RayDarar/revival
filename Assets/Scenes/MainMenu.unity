@@ -805,11 +805,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2966365165493260597, guid: 2aba591cca8dad64d92ff6cf49aae057,
-        type: 3}
-      propertyPath: sounds.Array.data[5].volume
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 2966365165493260599, guid: 2aba591cca8dad64d92ff6cf49aae057,
         type: 3}
       propertyPath: m_Name
@@ -1452,17 +1447,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
-    - target: {fileID: 6077448668993108358, guid: c41a6bf03eca76749929113884992a3c,
-        type: 3}
-      propertyPath: levels.Array.data[0].enemies.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6077448668993108358, guid: c41a6bf03eca76749929113884992a3c,
-        type: 3}
-      propertyPath: levels.Array.data[0].enemies.Array.data[1]
-      value: 
-      objectReference: {fileID: 2591040340865082832, guid: 8f9a75f10f3e5084fb5ae2eef9843d1a,
-        type: 3}
     - target: {fileID: 6077448668993108359, guid: c41a6bf03eca76749929113884992a3c,
         type: 3}
       propertyPath: m_RootOrder

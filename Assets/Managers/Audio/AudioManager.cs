@@ -18,13 +18,23 @@ public class AudioManager : GenericManager<AudioManager> {
 
   public void Play(string name) {
     Sound sound = Array.Find(sounds, s => s.name == name);
-    if (sound != null && !sound.source.isPlaying)
+
+    if (sound == null) {
+      Debug.LogWarning("Sound " + name + " is not found");
+      return;
+    }
+    if (!sound.source.isPlaying)
       sound.source.Play();
   }
 
   public void Stop(string name) {
     Sound sound = Array.Find(sounds, s => s.name == name);
-    if (sound != null && sound.source.isPlaying)
+
+    if (sound == null) {
+      Debug.LogWarning("Sound " + name + " is not found");
+      return;
+    }
+    if (sound.source.isPlaying)
       sound.source.Stop();
   }
 }

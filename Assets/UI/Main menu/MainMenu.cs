@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour {
   }
 
   IEnumerator PlayBackground() {
-    yield return new WaitForSeconds(0.2f);
+    yield return new WaitForSeconds(0.01f);
 
     AudioManager.Instance.Play("menu-background");
   }

@@ -1,6 +1,12 @@
 using System;
 using UnityEngine;
 
+public enum LevelType {
+  ARENA,
+  BOSS,
+  SHOPKEEPER
+}
+
 [Serializable]
 public class LevelDefinition {
   public string name;
@@ -12,4 +18,6 @@ public class LevelDefinition {
   public int enemyPerWave;
 
   public int stage;
+
+  public LevelType levelType;
 }

@@ -76,7 +76,25 @@ MonoBehaviour:
     loop: 0
   - name: menu-background
     clip: {fileID: 8300000, guid: 5c0a5fce5c9db2e4db720a55627035b3, type: 3}
-    volume: 1
+    volume: 0.8
+    pitch: 1
+    source: {fileID: 0}
+    loop: 1
+  - name: arena-background
+    clip: {fileID: 8300000, guid: 541afbb2ee4fb7449b7380a0c0166861, type: 3}
+    volume: 0.8
+    pitch: 1
+    source: {fileID: 0}
+    loop: 1
+  - name: boss-background
+    clip: {fileID: 8300000, guid: c1022d47ab770ee4b907d4e052c3a709, type: 3}
+    volume: 0.8
+    pitch: 1
+    source: {fileID: 0}
+    loop: 1
+  - name: shopkeeper-background
+    clip: {fileID: 8300000, guid: bf514a2d7ee62f648a2ec5b12a00de5d, type: 3}
+    volume: 0.8
     pitch: 1
     source: {fileID: 0}
     loop: 1

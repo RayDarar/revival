@@ -32,6 +32,12 @@ public class LevelManager : GenericManager<LevelManager> {
     animator.SetTrigger("Start");
     yield return new WaitForSeconds(1f);
 
+    if (currentLevel.levelType == LevelType.ARENA)
+      AudioManager.Instance.Play("arena-background");
+    else if (currentLevel.levelType == LevelType.BOSS)
+      AudioManager.Instance.Play("boss-background");
+    else if (currentLevel.levelType == LevelType.SHOPKEEPER)
+      AudioManager.Instance.Play("shopkeeper-background");
     SceneManager.LoadScene(currentLevel.name);
     yield return new WaitForSeconds(0.5f);
 

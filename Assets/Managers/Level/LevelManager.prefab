@@ -51,3 +51,4 @@ MonoBehaviour:
     waves: 3
     enemyPerWave: 2
     stage: 1
+    levelType: 0
