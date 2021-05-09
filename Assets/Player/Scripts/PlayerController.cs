@@ -214,8 +214,6 @@ public class PlayerController : MonoBehaviour {
     animator.SetFloat("Attack", attackType);
     animator.SetBool("IsHit", isHit);
     animator.SetBool("IsRolling", false);
-
-    UpdateHealthBar();
   }
 
   public void FixedUpdate() {
@@ -250,6 +248,8 @@ public class PlayerController : MonoBehaviour {
     health -= damage;
     isHit = true;
     Invoke("StopIsHit", 0.25f);
+    UpdateHealthBar();
+
     if (health <= 0) {
       isDead = true;
       this.enabled = false;
