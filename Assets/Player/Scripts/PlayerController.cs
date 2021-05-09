@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
@@ -185,6 +186,8 @@ public class PlayerController : MonoBehaviour {
     health = maxHealth;
 
     healthBarCells = GameObject.FindGameObjectsWithTag("HealthCell");
+    healthText = GameObject.FindGameObjectWithTag("PlayerHealth").GetComponent<TextMeshProUGUI>();
+    coinText = GameObject.FindGameObjectWithTag("PlayerCoin").GetComponent<TextMeshProUGUI>();
   }
 
   public void Update() {
@@ -237,6 +240,8 @@ public class PlayerController : MonoBehaviour {
   private bool isDead = false;
 
   private GameObject[] healthBarCells;
+  private TextMeshProUGUI healthText;
+  private TextMeshProUGUI coinText;
 
   public void TakeHit(float damage) {
     if (isDead) return;
@@ -265,6 +270,8 @@ public class PlayerController : MonoBehaviour {
       GameObject cell = healthBarCells[i];
       cell.SetActive(i <= threshold - 1 && threshold != 0);
     }
+
+    healthText.text = $"{Math.Round(health)}/{Math.Round(maxHealth)}";
   }
   #endregion
 }

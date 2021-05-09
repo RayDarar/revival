@@ -20775,53 +20775,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c33b215c527a41479e57bbafc2a32e0, type: 3}
---- !u!1001 &5520384266596511842
+--- !u!1001 &5192927506818410055
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5520384266619636600, guid: 00ceb6d4f5e63044882cc54e76efa185,
-        type: 3}
-      propertyPath: m_TagString
-      value: HealthCell
-      objectReference: {fileID: 0}
-    - target: {fileID: 5520384266683378827, guid: 00ceb6d4f5e63044882cc54e76efa185,
-        type: 3}
-      propertyPath: m_TagString
-      value: HealthCell
-      objectReference: {fileID: 0}
-    - target: {fileID: 5520384266709308194, guid: 00ceb6d4f5e63044882cc54e76efa185,
-        type: 3}
-      propertyPath: m_TagString
-      value: HealthCell
-      objectReference: {fileID: 0}
-    - target: {fileID: 5520384266927463512, guid: 00ceb6d4f5e63044882cc54e76efa185,
-        type: 3}
-      propertyPath: m_TagString
-      value: HealthCell
-      objectReference: {fileID: 0}
-    - target: {fileID: 5520384267496758417, guid: 00ceb6d4f5e63044882cc54e76efa185,
-        type: 3}
-      propertyPath: m_TagString
-      value: HealthCell
-      objectReference: {fileID: 0}
-    - target: {fileID: 5520384267731263669, guid: 00ceb6d4f5e63044882cc54e76efa185,
-        type: 3}
-      propertyPath: m_TagString
-      value: HealthCell
-      objectReference: {fileID: 0}
-    - target: {fileID: 5520384268173888467, guid: 00ceb6d4f5e63044882cc54e76efa185,
-        type: 3}
-      propertyPath: m_TagString
-      value: HealthCell
-      objectReference: {fileID: 0}
-    - target: {fileID: 5520384268185081970, guid: 00ceb6d4f5e63044882cc54e76efa185,
-        type: 3}
-      propertyPath: m_TagString
-      value: HealthCell
-      objectReference: {fileID: 0}
     - target: {fileID: 5520384268332264099, guid: 00ceb6d4f5e63044882cc54e76efa185,
         type: 3}
       propertyPath: m_Name
@@ -20931,16 +20891,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5520384268361151502, guid: 00ceb6d4f5e63044882cc54e76efa185,
-        type: 3}
-      propertyPath: m_TagString
-      value: HealthCell
-      objectReference: {fileID: 0}
-    - target: {fileID: 5520384268683366464, guid: 00ceb6d4f5e63044882cc54e76efa185,
-        type: 3}
-      propertyPath: m_TagString
-      value: HealthCell
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00ceb6d4f5e63044882cc54e76efa185, type: 3}
@@ -21163,10 +21113,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1182976596, guid: 877cee26823f7754e9b965a36ded1283, type: 3}
-      propertyPath: m_TagString
-      value: PlayerLight
-      objectReference: {fileID: 0}
     - target: {fileID: 8743366044629147697, guid: 877cee26823f7754e9b965a36ded1283,
         type: 3}
       propertyPath: m_RootOrder
@@ -21227,15 +21173,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8743366044629147708, guid: 877cee26823f7754e9b965a36ded1283,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8743366044629147711, guid: 877cee26823f7754e9b965a36ded1283,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 877cee26823f7754e9b965a36ded1283, type: 3}
