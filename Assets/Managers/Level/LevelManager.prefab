@@ -43,3 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3924b8f0ff3311642a6deb70454c9784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levels:
+  - name: Test
+    enemies:
+    - {fileID: 2591040340865082832, guid: 8f9a75f10f3e5084fb5ae2eef9843d1a, type: 3}
+    scene: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
+    waves: 3
