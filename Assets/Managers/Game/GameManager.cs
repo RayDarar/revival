@@ -14,4 +14,10 @@ public class GameManager : GenericManager<GameManager> {
         light.gameObject.SetActive(false);
     }
   }
+
+  public void NewGame() {
+    int index = Random.Range(0, LevelManager.Instance.levels.Length);
+
+    LevelManager.Instance.GenerateLevel(index);
+  }
 }

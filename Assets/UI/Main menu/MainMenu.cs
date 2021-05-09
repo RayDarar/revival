@@ -11,4 +11,16 @@ public class MainMenu : MonoBehaviour {
 
     AudioManager.Instance.Play("menu-background");
   }
+
+  public void PlayGame() {
+    GameManager.Instance.NewGame();
+  }
+
+  public void GoToOptions() {
+    Debug.Log("Options!");
+  }
+
+  public void ExitGame() {
+    Application.Quit(0);
+  }
 }
