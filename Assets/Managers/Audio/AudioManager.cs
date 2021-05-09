@@ -19,7 +19,7 @@ public class AudioManager : GenericManager<AudioManager> {
   public void Play(string name) {
     Sound sound = Array.Find(sounds, s => s.name == name);
 
-    if (sound == null) {
+    if (sound == null || sound.source == null) {
       Debug.LogWarning("Sound " + name + " is not found");
       return;
     }
@@ -30,7 +30,7 @@ public class AudioManager : GenericManager<AudioManager> {
   public void Stop(string name) {
     Sound sound = Array.Find(sounds, s => s.name == name);
 
-    if (sound == null) {
+    if (sound == null || sound.source == null) {
       Debug.LogWarning("Sound " + name + " is not found");
       return;
     }
