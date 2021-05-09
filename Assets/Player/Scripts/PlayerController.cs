@@ -183,6 +183,8 @@ public class PlayerController : MonoBehaviour {
     collider = GetComponent<BoxCollider2D>();
 
     health = maxHealth;
+
+    healthBarCells = GameObject.FindGameObjectsWithTag("HealthCell");
   }
 
   public void Update() {
@@ -209,6 +211,8 @@ public class PlayerController : MonoBehaviour {
     animator.SetFloat("Attack", attackType);
     animator.SetBool("IsHit", isHit);
     animator.SetBool("IsRolling", false);
+
+    UpdateHealthBar();
   }
 
   public void FixedUpdate() {
@@ -226,11 +230,13 @@ public class PlayerController : MonoBehaviour {
   }
   #endregion
 
-  #region TakeHit
+  #region Hit Death And Damage
   private float maxHealth = 100f;
   private float health;
   private bool isHit = false;
   private bool isDead = false;
+
+  private GameObject[] healthBarCells;
 
   public void TakeHit(float damage) {
     if (isDead) return;
@@ -250,6 +256,15 @@ public class PlayerController : MonoBehaviour {
 
   public void StopIsHit() {
     isHit = false;
+  }
+
+  public void UpdateHealthBar() {
+    double threshold = Math.Floor(health / maxHealth * 10);
+
+    for (int i = 0; i < healthBarCells.Length; i++) {
+      GameObject cell = healthBarCells[i];
+      cell.SetActive(i <= threshold && threshold != 0);
+    }
   }
   #endregion
 }
