@@ -1,17 +1,22 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : GenericManager<LevelManager> {
   public LevelDefinition[] levels;
 
-  public void GenerateLevel(int index) {
-    if (index > levels.Length || index < 0) throw new Exception("Level index out of range");
+  public void StartRandomLevel() {
+    int stage = GameManager.Instance.stage;
 
-    LevelDefinition level = levels[index];
+    var list = new List<LevelDefinition>();
 
-    StartCoroutine(LoadLevel(level));
+    foreach (var level in levels)
+      if (level.stage == stage) list.Add(level);
+
+    int index = Random.Range(0, list.Count);
+
+    StartCoroutine(LoadLevel(list[index]));
   }
 
   IEnumerator LoadLevel(LevelDefinition level) {
@@ -21,6 +26,6 @@ public class LevelManager : GenericManager<LevelManager> {
 
     yield return new WaitForSeconds(3f);
 
-    SceneManager.LoadScene(level.scene.name);
+    SceneManager.LoadScene(level.name);
   }
 }

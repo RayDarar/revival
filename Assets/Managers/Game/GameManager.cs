@@ -2,8 +2,8 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
 public class GameManager : GenericManager<GameManager> {
-  public GameEntity[] enemies;
-  public GameObject player;
+  [HideInInspector]
+  public int stage = 0;
 
   public void GameOver() {
     Debug.Log("Game Over");
@@ -16,8 +16,7 @@ public class GameManager : GenericManager<GameManager> {
   }
 
   public void NewGame() {
-    int index = Random.Range(0, LevelManager.Instance.levels.Length);
-
-    LevelManager.Instance.GenerateLevel(index);
+    stage = 1;
+    LevelManager.Instance.StartRandomLevel();
   }
 }

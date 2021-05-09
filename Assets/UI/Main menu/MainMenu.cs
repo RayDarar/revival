@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour {
   }
 
   IEnumerator PlayBackground() {
-    yield return new WaitForSeconds(0.5f);
+    yield return new WaitForSeconds(0.2f);
 
     AudioManager.Instance.Play("menu-background");
   }
@@ -22,5 +22,9 @@ public class MainMenu : MonoBehaviour {
 
   public void ExitGame() {
     Application.Quit(0);
+  }
+
+  public void OnDestroy() {
+    AudioManager.Instance.Stop("menu-background");
   }
 }
