@@ -9,5 +9,7 @@ public class LevelDefinition {
 
   public int waves;
 
+  public int enemyPerWave;
+
   public int stage;
 }

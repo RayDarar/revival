@@ -126,6 +126,8 @@ public abstract class GenericEnemyController : MonoBehaviour {
       collider.enabled = false;
       animator.SetBool("IsDead", isDead);
       Destroy(gameObject, 1f);
+
+      LevelManager.Instance.DecreaseEnemyCount();
     }
   }
 
