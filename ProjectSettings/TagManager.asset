@@ -11,6 +11,8 @@ TagManager:
   - PlayerCoin
   - SceneTransition
   - PauseMenu
+  - GameStage
+  - GameLevel
   layers:
   - Default
   - TransparentFX

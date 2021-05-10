@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Experimental.Rendering.Universal;
@@ -11,6 +12,8 @@ public class LevelManager : GenericManager<LevelManager> {
 
   private int enemiesCount = 0;
   private LevelDefinition currentLevel;
+  private TextMeshProUGUI stageText;
+  private TextMeshProUGUI levelText;
 
   public void StartRandomLevel() {
     int stage = GameManager.Instance.stage;
@@ -43,7 +46,14 @@ public class LevelManager : GenericManager<LevelManager> {
 
     if (index >= 0)
       SceneManager.LoadScene(index);
-    else SceneManager.LoadScene(currentLevel.name);
+    else {
+      SceneManager.LoadScene(currentLevel.name);
+      stageText = GameObject.FindGameObjectWithTag("GameStage").GetComponent<TextMeshProUGUI>();
+      levelText = GameObject.FindGameObjectWithTag("GameLevel").GetComponent<TextMeshProUGUI>();
+
+      stageText.text = $"Stage: {GameManager.Instance.stage}";
+      levelText.text = $"Level: {GameManager.Instance.wave}";
+    }
 
     yield return new WaitForSeconds(0.5f);
 
