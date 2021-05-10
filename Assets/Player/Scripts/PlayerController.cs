@@ -221,11 +221,12 @@ public class PlayerController : MonoBehaviour {
   }
 
   public void FixedUpdate() {
+    PlayerData data = GameManager.Instance.playerData;
     if (isRolling) {
       PerformRolling();
       return;
     }
-    float speed = moveSpeed * Time.fixedDeltaTime;
+    float speed = data.moveSpeed * Time.fixedDeltaTime;
 
     if (Math.Abs(movement.x) == Math.Abs(movement.y))
       speed /= 1.2f;
@@ -272,15 +273,16 @@ public class PlayerController : MonoBehaviour {
   }
 
   public void UpdateHealthBar() {
+    PlayerData data = GameManager.Instance.playerData;
     if (healthBarCells == null) return;
-    double threshold = Math.Floor(health / maxHealth * 10);
+    double threshold = Math.Floor(health / data.maxHealth * 10);
 
     for (int i = 0; i < healthBarCells.Length; i++) {
       GameObject cell = healthBarCells[i];
       cell.SetActive(i <= threshold - 1 && threshold != 0);
     }
 
-    healthText.text = $"{Math.Round(health)}/{Math.Round(maxHealth)}";
+    healthText.text = $"{Math.Round(health)}/{Math.Round(data.maxHealth)}";
   }
   #endregion
 

@@ -35,7 +35,7 @@ public class GameManager : GenericManager<GameManager> {
   public void NewGame() {
     stage = 1;
     level = 1;
-    selectedReward = 1;
+    selectedReward = 3;
 
     playerData = new PlayerData();
     playerData.baseAttackDamage = 5f;

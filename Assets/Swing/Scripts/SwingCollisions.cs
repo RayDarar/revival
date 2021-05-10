@@ -10,8 +10,9 @@ public class SwingCollisions : MonoBehaviour {
     if (other.gameObject.layer != 9) return;
 
     var controller = other.gameObject.GetComponent<GenericEnemyController>();
+    PlayerData data = GameManager.Instance.playerData;
     if (player.lastAttackType == 3)
-      controller.TakeHit(player.baseAttackDamage * player.heavyAttackMultiplier);
-    else controller.TakeHit(player.baseAttackDamage);
+      controller.TakeHit(data.baseAttackDamage * data.heavyAttackMultiplier);
+    else controller.TakeHit(data.baseAttackDamage);
   }
 }
