@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -186,7 +187,7 @@ public class PlayerController : MonoBehaviour {
 
     GameManager.Instance.SetupPlayer(this);
 
-    healthBarCells = GameObject.FindGameObjectsWithTag("HealthCell");
+    healthBarCells = GameObject.FindGameObjectsWithTag("HealthCell").OrderBy(c => c.GetComponent<IndexedItem>().index).ToArray();
     healthText = GameObject.FindGameObjectWithTag("PlayerHealth").GetComponent<TextMeshProUGUI>();
     coinText = GameObject.FindGameObjectWithTag("PlayerCoin").GetComponent<TextMeshProUGUI>();
   }
