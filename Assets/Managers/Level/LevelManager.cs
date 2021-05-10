@@ -128,7 +128,7 @@ public class LevelManager : GenericManager<LevelManager> {
       .OrderBy(a => System.Guid.NewGuid())
       .Take(3)
       .ToArray();
-    GameObject[] slots = GameObject.FindGameObjectsWithTag("ArtifactSlot");
+    GameObject[] slots = GameObject.FindGameObjectsWithTag("ArtifactSlot").OrderBy(s => s.GetComponent<IndexedItem>().index).ToArray();
 
     for (int i = 0; i < 3; i++) {
       var slotIcon = slots[i].GetComponentInChildren<Image>();
@@ -188,7 +188,7 @@ public class LevelManager : GenericManager<LevelManager> {
 
   public void ShowNextRewards() {
     RewardDefinition[] options = rewards.OrderBy(r => System.Guid.NewGuid()).Take(3).ToArray();
-    GameObject[] slots = GameObject.FindGameObjectsWithTag("RewardSlot");
+    GameObject[] slots = GameObject.FindGameObjectsWithTag("RewardSlot").OrderBy(s => s.GetComponent<IndexedItem>().index).ToArray();
 
     for (int i = 0; i < 3; i++) {
       var option = options[i];
