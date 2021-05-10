@@ -107,7 +107,7 @@ public class LevelManager : GenericManager<LevelManager> {
 
     if (reward == 0) {
       PlayerManager.Instance.GetPlayer().AddCoins(GameManager.Instance.stage * 10 * GameManager.Instance.level);
-      GoNext();
+      ShowNextRewards();
     }
     else ShowArtifacts();
   }
@@ -171,7 +171,7 @@ public class LevelManager : GenericManager<LevelManager> {
     group.interactable = false;
     group.blocksRaycasts = false;
 
-    GoNext();
+    ShowNextRewards();
   }
 
   public void GoNext() {
@@ -186,6 +186,7 @@ public class LevelManager : GenericManager<LevelManager> {
     StartRandomLevel();
   }
 
+  private RewardDefinition[] rewardOptions;
   public void ShowNextRewards() {
     RewardDefinition[] options = rewards.OrderBy(r => System.Guid.NewGuid()).Take(3).ToArray();
     GameObject[] slots = GameObject.FindGameObjectsWithTag("RewardSlot").OrderBy(s => s.GetComponent<IndexedItem>().index).ToArray();
@@ -211,6 +212,33 @@ public class LevelManager : GenericManager<LevelManager> {
     group.alpha = 1;
     group.interactable = true;
     group.blocksRaycasts = true;
+
+    rewardOptions = options;
+  }
+
+  public void SelectNextReward(int index) {
+    RewardDefinition reward = rewardOptions[index];
+
+    switch (reward.type) {
+      case RewardType.ARTIFACT: {
+          switch (reward.name) {
+            case "Attack Artifact": GameManager.Instance.selectedReward = 1; break;
+            case "Defense Artifact": GameManager.Instance.selectedReward = 2; break;
+            case "Speed Artifact": GameManager.Instance.selectedReward = 3; break;
+            case "Magic Artifact": GameManager.Instance.selectedReward = 4; break;
+          }
+          break;
+        }
+      case RewardType.COINS: GameManager.Instance.selectedReward = 0; break;
+      case RewardType.SHOPKEEPER: GameManager.Instance.selectedReward = 6; break;
+    }
+
+    var group = GameObject.FindGameObjectWithTag("RewardContainer").GetComponent<CanvasGroup>();
+    group.alpha = 0;
+    group.interactable = false;
+    group.blocksRaycasts = false;
+
+    GoNext();
   }
 
   public void DecreaseEnemyCount() {
