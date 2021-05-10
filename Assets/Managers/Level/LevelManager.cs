@@ -107,12 +107,83 @@ public class LevelManager : GenericManager<LevelManager> {
 
     if (reward == 0) {
       PlayerManager.Instance.GetPlayer().AddCoins(GameManager.Instance.stage * 10 * GameManager.Instance.level);
+      GoNext();
     }
     else ShowArtifacts();
   }
 
+  ArtifactDefinition[] artifactOptions;
   public void ShowArtifacts() {
+    ArtifactType type = ArtifactType.ATTACK;
+    switch (GameManager.Instance.selectedReward) {
+      case 1: type = ArtifactType.ATTACK; break;
+      case 2: type = ArtifactType.DEFENSE; break;
+      case 3: type = ArtifactType.SPEED; break;
+      case 4: type = ArtifactType.MAGIC; break;
+    }
 
+    ArtifactDefinition[] options =
+      GameManager.Instance.artifacts
+      .Where(a => a.condition <= GameManager.Instance.stage * 10 + GameManager.Instance.level && a.type == type)
+      .OrderBy(a => System.Guid.NewGuid())
+      .Take(3)
+      .ToArray();
+    GameObject[] slots = GameObject.FindGameObjectsWithTag("ArtifactSlot");
+
+    for (int i = 0; i < 3; i++) {
+      var slotIcon = slots[i].GetComponentInChildren<Image>();
+      var slotText = slots[i].GetComponentInChildren<TextMeshProUGUI>();
+
+      if (i > options.Length - 1) {
+        slotText.text = "";
+        slotIcon.sprite = null;
+        slotIcon.color = new Color(255, 255, 255, 0);
+        continue;
+      }
+      var option = options[i];
+
+      slotText.text = option.name;
+      slotIcon.sprite = option.sprite;
+      slotIcon.color = new Color(255, 255, 255, 1);
+    }
+
+    var group = GameObject.FindGameObjectWithTag("ArtifactContainer").GetComponent<CanvasGroup>();
+    group.alpha = 1;
+    group.interactable = true;
+    group.blocksRaycasts = true;
+
+    artifactOptions = options;
+  }
+
+  public void SelectArtifact(int index) {
+    if (index > artifactOptions.Length - 1) return;
+    ArtifactDefinition artifact = artifactOptions[index];
+
+    switch (GameManager.Instance.selectedReward) {
+      case 1: GameManager.Instance.playerData.attackArtifact = artifact.script; break;
+      case 2: GameManager.Instance.playerData.defenseArtifact = artifact.script; break;
+      case 3: GameManager.Instance.playerData.speedArtifact = artifact.script; break;
+      case 4: GameManager.Instance.playerData.magicArtifact = artifact.script; break;
+    }
+
+    var group = GameObject.FindGameObjectWithTag("ArtifactContainer").GetComponent<CanvasGroup>();
+    group.alpha = 0;
+    group.interactable = false;
+    group.blocksRaycasts = false;
+
+    GoNext();
+  }
+
+  public void GoNext() {
+    GameManager.Instance.level++;
+    GameManager.Instance.wave = 0;
+
+    if (GameManager.Instance.level == 11) {
+      GameManager.Instance.stage++;
+      GameManager.Instance.level = 1;
+    }
+
+    StartRandomLevel();
   }
 
   public void ShowNextRewards() {

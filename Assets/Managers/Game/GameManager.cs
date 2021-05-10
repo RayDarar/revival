@@ -23,8 +23,6 @@ public class GameManager : GenericManager<GameManager> {
   public ArtifactDefinition[] artifacts;
 
   public void GameOver() {
-    Debug.Log("Game Over");
-
     var lights = GameObject.FindObjectsOfType<Light2D>();
     foreach (var light in lights) {
       if (!light.gameObject.CompareTag("PlayerLight"))
@@ -35,7 +33,7 @@ public class GameManager : GenericManager<GameManager> {
   public void NewGame() {
     stage = 1;
     level = 1;
-    selectedReward = 0;
+    selectedReward = 1;
 
     playerData = new PlayerData();
     playerData.baseAttackDamage = 5f;

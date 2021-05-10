@@ -286,6 +286,8 @@ public class PlayerController : MonoBehaviour {
 
   public void AddCoins(int amount) {
     coins += amount;
+
+    coinText.text = $"{coins}";
   }
   #endregion
 }

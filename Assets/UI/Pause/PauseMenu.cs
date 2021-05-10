@@ -35,6 +35,9 @@ public class PauseMenu : MonoBehaviour {
 
   public void ToMainMenu() {
     UnpauseGame();
+    AudioManager.Instance.Stop("boss-background");
+    AudioManager.Instance.Stop("arena-background");
+    AudioManager.Instance.Stop("shopkeeper-background");
     LevelManager.Instance.LoadMainMenu();
   }
 
