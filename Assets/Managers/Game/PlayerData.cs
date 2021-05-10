@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class PlayerData {
   public float health { get; set; }
   public float maxHealth { get; set; }
@@ -13,8 +11,8 @@ public class PlayerData {
   public float baseAttackDamage { get; set; }
   public float heavyAttackMultiplier { get; set; }
 
-  public GameObject attackArtifact { get; set; }
-  public GameObject defenseArtifact { get; set; }
-  public GameObject speedArtifact { get; set; }
-  public GameObject magicArtifact { get; set; }
+  public ArtifactDefinition attackArtifact { get; set; }
+  public ArtifactDefinition defenseArtifact { get; set; }
+  public ArtifactDefinition speedArtifact { get; set; }
+  public ArtifactDefinition magicArtifact { get; set; }
 }

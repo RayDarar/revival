@@ -52,7 +52,7 @@ public class LevelManager : GenericManager<LevelManager> {
       SceneManager.LoadScene(currentLevel.name);
     }
 
-    yield return new WaitForSeconds(0.5f);
+    yield return new WaitForSeconds(0.1f);
 
     if (index < 0) {
       yield return PopulateLevel();
@@ -61,7 +61,7 @@ public class LevelManager : GenericManager<LevelManager> {
       levelText = GameObject.FindGameObjectWithTag("GameLevel").GetComponent<TextMeshProUGUI>();
 
       stageText.text = $"Stage: {GameManager.Instance.stage}";
-      levelText.text = $"Level: {GameManager.Instance.wave}";
+      levelText.text = $"Level: {GameManager.Instance.level}";
     }
   }
 
@@ -160,10 +160,10 @@ public class LevelManager : GenericManager<LevelManager> {
     ArtifactDefinition artifact = artifactOptions[index];
 
     switch (GameManager.Instance.selectedReward) {
-      case 1: GameManager.Instance.playerData.attackArtifact = artifact.script; break;
-      case 2: GameManager.Instance.playerData.defenseArtifact = artifact.script; break;
-      case 3: GameManager.Instance.playerData.speedArtifact = artifact.script; break;
-      case 4: GameManager.Instance.playerData.magicArtifact = artifact.script; break;
+      case 1: GameManager.Instance.playerData.attackArtifact = artifact; break;
+      case 2: GameManager.Instance.playerData.defenseArtifact = artifact; break;
+      case 3: GameManager.Instance.playerData.speedArtifact = artifact; break;
+      case 4: GameManager.Instance.playerData.magicArtifact = artifact; break;
     }
 
     var group = GameObject.FindGameObjectWithTag("ArtifactContainer").GetComponent<CanvasGroup>();
