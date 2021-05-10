@@ -26,22 +26,29 @@ public class LevelManager : GenericManager<LevelManager> {
     StartCoroutine(LoadLevel());
   }
 
-  public IEnumerator LoadLevel() {
+  public IEnumerator LoadLevel(int index = -1) {
     var animator = GameObject.FindGameObjectWithTag("SceneTransition").GetComponent<Animator>();
     animator.enabled = true;
     animator.SetTrigger("Start");
     yield return new WaitForSeconds(1f);
 
-    if (currentLevel.levelType == LevelType.ARENA)
-      AudioManager.Instance.Play("arena-background");
-    else if (currentLevel.levelType == LevelType.BOSS)
-      AudioManager.Instance.Play("boss-background");
-    else if (currentLevel.levelType == LevelType.SHOPKEEPER)
-      AudioManager.Instance.Play("shopkeeper-background");
-    SceneManager.LoadScene(currentLevel.name);
+    if (index < 0) {
+      if (currentLevel.levelType == LevelType.ARENA)
+        AudioManager.Instance.Play("arena-background");
+      else if (currentLevel.levelType == LevelType.BOSS)
+        AudioManager.Instance.Play("boss-background");
+      else if (currentLevel.levelType == LevelType.SHOPKEEPER)
+        AudioManager.Instance.Play("shopkeeper-background");
+    }
+
+    if (index >= 0)
+      SceneManager.LoadScene(index);
+    else SceneManager.LoadScene(currentLevel.name);
+
     yield return new WaitForSeconds(0.5f);
 
-    yield return PopulateLevel();
+    if (index < 0)
+      yield return PopulateLevel();
   }
 
   public IEnumerator PopulateLevel() {
@@ -95,5 +102,9 @@ public class LevelManager : GenericManager<LevelManager> {
     else if (enemiesCount == 0 && GameManager.Instance.wave == currentLevel.waves) {
       GetReward();
     }
+  }
+
+  public void LoadMainMenu() {
+    StartCoroutine(LoadLevel(0));
   }
 }

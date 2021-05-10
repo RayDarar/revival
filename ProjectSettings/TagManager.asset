@@ -10,6 +10,7 @@ TagManager:
   - PlayerHealth
   - PlayerCoin
   - SceneTransition
+  - PauseMenu
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - PlayerNonCollisions
   - ObstaclesNonCollisions
   - PlayerProjectile
-  - 
+  - UI_Invincible
   - 
   - 
   - 

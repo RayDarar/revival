@@ -4,7 +4,7 @@ public class SwingCollisions : MonoBehaviour {
   private PlayerController player;
 
   private void Start() {
-    player = PlayerManager.Instance.player;
+    player = PlayerManager.Instance.GetPlayer();
   }
   private void OnCollisionEnter2D(Collision2D other) {
     if (other.gameObject.layer != 9) return;

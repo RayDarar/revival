@@ -67,7 +67,7 @@ public abstract class GenericEnemyController : MonoBehaviour {
     animator = GetComponent<Animator>();
     collider = GetComponent<BoxCollider2D>();
 
-    player = PlayerManager.Instance.player;
+    player = PlayerManager.Instance.GetPlayer();
   }
 
   public virtual void Update() {

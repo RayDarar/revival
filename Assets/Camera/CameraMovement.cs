@@ -8,7 +8,7 @@ public class CameraMovement : MonoBehaviour {
   public Vector3 offset;
 
   public void Start() {
-    target = PlayerManager.Instance.player.transform;
+    target = PlayerManager.Instance.GetPlayer().transform;
   }
 
   public void LateUpdate() {

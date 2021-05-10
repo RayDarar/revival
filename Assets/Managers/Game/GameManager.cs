@@ -3,6 +3,9 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class GameManager : GenericManager<GameManager> {
   [HideInInspector]
+  public bool isPaused = false;
+
+  [HideInInspector]
   public int stage = 0;
 
   [HideInInspector]
@@ -15,7 +18,7 @@ public class GameManager : GenericManager<GameManager> {
   public int selectedReward = 0; // 0 Coins, 1 Attack, 2 Defense, 3 Speed, 4 Magic, 6 Shopkeeper
 
   [HideInInspector]
-  public PlayerData playerData;
+  public PlayerData playerData = new PlayerData();
 
   public void GameOver() {
     Debug.Log("Game Over");
