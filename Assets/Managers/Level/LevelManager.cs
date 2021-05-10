@@ -6,9 +6,11 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : GenericManager<LevelManager> {
   public LevelDefinition[] levels;
+  public RewardDefinition[] rewards;
 
   private int enemiesCount = 0;
   private LevelDefinition currentLevel;
@@ -48,17 +50,19 @@ public class LevelManager : GenericManager<LevelManager> {
       SceneManager.LoadScene(index);
     else {
       SceneManager.LoadScene(currentLevel.name);
+    }
+
+    yield return new WaitForSeconds(0.5f);
+
+    if (index < 0) {
+      yield return PopulateLevel();
+
       stageText = GameObject.FindGameObjectWithTag("GameStage").GetComponent<TextMeshProUGUI>();
       levelText = GameObject.FindGameObjectWithTag("GameLevel").GetComponent<TextMeshProUGUI>();
 
       stageText.text = $"Stage: {GameManager.Instance.stage}";
       levelText.text = $"Level: {GameManager.Instance.wave}";
     }
-
-    yield return new WaitForSeconds(0.5f);
-
-    if (index < 0)
-      yield return PopulateLevel();
   }
 
   public IEnumerator PopulateLevel() {
@@ -99,7 +103,34 @@ public class LevelManager : GenericManager<LevelManager> {
   }
 
   public void GetReward() {
-    Debug.Log("Reward taken!");
+    ShowNextRewards();
+  }
+
+  public void ShowNextRewards() {
+    RewardDefinition[] options = rewards.OrderBy(r => System.Guid.NewGuid()).Take(3).ToArray();
+    GameObject[] slots = GameObject.FindGameObjectsWithTag("RewardSlot");
+
+    for (int i = 0; i < 3; i++) {
+      var option = options[i];
+      var slotIcon = slots[i].GetComponentInChildren<Image>();
+      var slotText = slots[i].GetComponentInChildren<TextMeshProUGUI>();
+
+      slotText.text = option.name;
+
+      if (option.type == RewardType.ARTIFACT) {
+        slotIcon.sprite = option.icon;
+        slotIcon.color = new Color(255, 255, 255, 1);
+      }
+      else {
+        slotIcon.sprite = null;
+        slotIcon.color = new Color(255, 255, 255, 0);
+      }
+    }
+
+    var group = GameObject.FindGameObjectWithTag("RewardContainer").GetComponent<CanvasGroup>();
+    group.alpha = 1;
+    group.interactable = true;
+    group.blocksRaycasts = true;
   }
 
   public void DecreaseEnemyCount() {
@@ -116,5 +147,13 @@ public class LevelManager : GenericManager<LevelManager> {
 
   public void LoadMainMenu() {
     StartCoroutine(LoadLevel(0));
+  }
+
+  public void KillWave() {
+    var enemies = GameObject.FindGameObjectsWithTag("Enemies");
+
+    foreach (var enemy in enemies) {
+      enemy.GetComponent<GenericEnemyController>().TakeHit(100000f);
+    }
   }
 }

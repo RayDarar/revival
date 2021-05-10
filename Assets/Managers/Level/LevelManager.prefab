@@ -52,3 +52,22 @@ MonoBehaviour:
     enemyPerWave: 2
     stage: 1
     levelType: 0
+  rewards:
+  - name: Attack Artifact
+    icon: {fileID: 21300000, guid: 1c87eaabe3ae9d449a5c7e397cb5693c, type: 3}
+    type: 0
+  - name: Defense Artifact
+    icon: {fileID: 21300000, guid: a844206f593c4de419b300badf9849e6, type: 3}
+    type: 0
+  - name: Speed Artifact
+    icon: {fileID: 21300000, guid: 44b84b57614e5e141adcdc32291885f2, type: 3}
+    type: 0
+  - name: Magic Artifact
+    icon: {fileID: 21300000, guid: e3b2e2a5cd558bf43af347b5150aef99, type: 3}
+    type: 0
+  - name: Coins
+    icon: {fileID: 0}
+    type: 1
+  - name: Shopkeeper
+    icon: {fileID: 0}
+    type: 2

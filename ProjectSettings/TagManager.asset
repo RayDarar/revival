@@ -13,6 +13,9 @@ TagManager:
   - PauseMenu
   - GameStage
   - GameLevel
+  - RewardSlot
+  - RewardContainer
+  - Enemies
   layers:
   - Default
   - TransparentFX
