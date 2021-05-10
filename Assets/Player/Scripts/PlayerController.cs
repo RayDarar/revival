@@ -216,6 +216,8 @@ public class PlayerController : MonoBehaviour {
     animator.SetFloat("Attack", attackType);
     animator.SetBool("IsHit", isHit);
     animator.SetBool("IsRolling", false);
+
+    UpdateHealthBar();
   }
 
   public void FixedUpdate() {
@@ -270,6 +272,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   public void UpdateHealthBar() {
+    if (healthBarCells == null) return;
     double threshold = Math.Floor(health / maxHealth * 10);
 
     for (int i = 0; i < healthBarCells.Length; i++) {

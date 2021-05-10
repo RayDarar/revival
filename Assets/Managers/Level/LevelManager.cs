@@ -249,6 +249,7 @@ public class LevelManager : GenericManager<LevelManager> {
       return;
     }
     else if (enemiesCount == 0 && GameManager.Instance.wave == currentLevel.waves) {
+      GameManager.Instance.UpdatePlayerData(PlayerManager.Instance.GetPlayer());
       GetReward();
     }
   }
