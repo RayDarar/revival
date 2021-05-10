@@ -103,7 +103,16 @@ public class LevelManager : GenericManager<LevelManager> {
   }
 
   public void GetReward() {
-    ShowNextRewards();
+    int reward = GameManager.Instance.selectedReward;
+
+    if (reward == 0) {
+      PlayerManager.Instance.GetPlayer().AddCoins(GameManager.Instance.stage * 10 * GameManager.Instance.level);
+    }
+    else ShowArtifacts();
+  }
+
+  public void ShowArtifacts() {
+
   }
 
   public void ShowNextRewards() {

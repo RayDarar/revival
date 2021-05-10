@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4334140411165165582}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.756917, y: 1.5769393, z: -1.0517578}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -43,8 +43,217 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cef08cb349818624d87ab78a469a2e64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - name: skeleton1
-    entity: {fileID: 2591040340865082832, guid: 8f9a75f10f3e5084fb5ae2eef9843d1a,
+  isPaused: 0
+  stage: 0
+  level: 0
+  wave: 0
+  selectedReward: 0
+  artifacts:
+  - name: Battle Fury
+    description: 
+    type: 0
+    sprite: {fileID: 21300000, guid: 7c02ff9dc969a9f42b1ce44cedf5b881, type: 3}
+    condition: 21
+    script: {fileID: 5134152727310641133, guid: 5c279b8464fb6934c9472ce28c7fbdcf,
       type: 3}
-  player: {fileID: 8743366044629147698, guid: 877cee26823f7754e9b965a36ded1283, type: 3}
+  - name: Blades of Attack
+    description: 
+    type: 0
+    sprite: {fileID: 21300000, guid: 6a3d80855ee7f7042b26c09209f9359d, type: 3}
+    condition: 4
+    script: {fileID: 3709077390532711757, guid: 31c6adf5509ded844adc621bc5868354,
+      type: 3}
+  - name: Claymore
+    description: 
+    type: 0
+    sprite: {fileID: 21300000, guid: 96612738b0d07c84790d1e4879cd0f82, type: 3}
+    condition: 13
+    script: {fileID: 553320423590767598, guid: d1ba42b29129cef459debee4e86a7b26, type: 3}
+  - name: Daedalus
+    description: 
+    type: 0
+    sprite: {fileID: 21300000, guid: 52820de825923f3459f449168e1e07d1, type: 3}
+    condition: 32
+    script: {fileID: 282436205194480285, guid: 8c082977d0e7bd147871d93e354fb374, type: 3}
+  - name: Demon Edge
+    description: 
+    type: 0
+    sprite: {fileID: 21300000, guid: cda14e7b9654879488646d7113b08507, type: 3}
+    condition: 22
+    script: {fileID: 5877067973005490797, guid: 50145989639e1be4fb54e75a95758e20,
+      type: 3}
+  - name: Divine Rapier
+    description: 
+    type: 0
+    sprite: {fileID: 21300000, guid: f6232d7c817ee974d968ddb14f3a56c9, type: 3}
+    condition: 45
+    script: {fileID: 6438595564297364024, guid: 9c7719f5cdedc194aa03c1a3c58094a1,
+      type: 3}
+  - name: Manta Style
+    description: 
+    type: 0
+    sprite: {fileID: 21300000, guid: 36b836aadced0f44588a172fb04fef60, type: 3}
+    condition: 45
+    script: {fileID: 8064428865465124452, guid: 5fa6d9e5447cba84cbdf31bb02421385,
+      type: 3}
+  - name: Ogre Axe
+    description: 
+    type: 0
+    sprite: {fileID: 21300000, guid: 7accaeb4b097bae43b180dd225b7ac7a, type: 3}
+    condition: 10
+    script: {fileID: 4076534022939635859, guid: 4daa243dbe12f5d4cbbc7130d30b9b79,
+      type: 3}
+  - name: Reaver
+    description: 
+    type: 0
+    sprite: {fileID: 21300000, guid: 44a074b51f3a9734392ef3296ce0ba3a, type: 3}
+    condition: 38
+    script: {fileID: 7471397552272075723, guid: c58a6b545ac8f6e45974f29e79042cac,
+      type: 3}
+  - name: Assault Cuirass
+    description: 
+    type: 1
+    sprite: {fileID: 21300000, guid: 16e0221a197a60d40a0bd708c25f9ca2, type: 3}
+    condition: 40
+    script: {fileID: 7827171772146978001, guid: ae022ea5d0cc3da46885968305467519,
+      type: 3}
+  - name: Belt of Strength
+    description: 
+    type: 1
+    sprite: {fileID: 21300000, guid: 4439ca78459280a4d916c492b0b967b5, type: 3}
+    condition: 4
+    script: {fileID: 7444499578512226075, guid: fa7505b0abe9c3940b92c78594c4d291,
+      type: 3}
+  - name: Crimson Guard
+    description: 
+    type: 1
+    sprite: {fileID: 21300000, guid: 0842da3f86c575e43adfd3faff8db251, type: 3}
+    condition: 30
+    script: {fileID: 8278715910479177686, guid: 8fcdd7e167b91294ba0048b85d9d6b71,
+      type: 3}
+  - name: Gauntlets of Strength
+    description: 
+    type: 1
+    sprite: {fileID: 21300000, guid: 20b874f901b20524782a56724a7cbbef, type: 3}
+    condition: 15
+    script: {fileID: 3153986366278724529, guid: 850d6fde948a7ca4a87b61deed262480,
+      type: 3}
+  - name: Helm of Iron Will
+    description: 
+    type: 1
+    sprite: {fileID: 21300000, guid: 7f4e393055a63254da9bef059c9d8730, type: 3}
+    condition: 8
+    script: {fileID: 8073855209838281289, guid: 640982794312bf34caead4bb3bbc4fdb,
+      type: 3}
+  - name: Platemail
+    description: 
+    type: 1
+    sprite: {fileID: 21300000, guid: b3ea8e98c826df9478eb212565b8a5c6, type: 3}
+    condition: 8
+    script: {fileID: 7883103591417134970, guid: 953686b6a3b59284e86de98ad2df40b7,
+      type: 3}
+  - name: Ring of Protection
+    description: 
+    type: 1
+    sprite: {fileID: 21300000, guid: 34cc1b6446eb020469007539f1c319a2, type: 3}
+    condition: 2
+    script: {fileID: 8617170434195252988, guid: ff7bc38fce59ec44aa00d2f47871de2f,
+      type: 3}
+  - name: Dagon
+    description: 
+    type: 3
+    sprite: {fileID: 21300000, guid: 898912ac583bfdb4495d8dd235bb1f09, type: 3}
+    condition: 20
+    script: {fileID: 3624133547101371189, guid: 2e9513358fc83e542acf9068f88d1f3a,
+      type: 3}
+  - name: Mask of Madness
+    description: 
+    type: 3
+    sprite: {fileID: 21300000, guid: 14471285379704a4598648a3dbd87e68, type: 3}
+    condition: 20
+    script: {fileID: 9112749206505206333, guid: b99e50819d8421f40a54e9d3458bf22f,
+      type: 3}
+  - name: Morbid Mask
+    description: 
+    type: 3
+    sprite: {fileID: 21300000, guid: 729fc2ca96e264c4eb37c6d8e16aadde, type: 3}
+    condition: 10
+    script: {fileID: 2080141995082785734, guid: c59be18dbf0098049bbd1adf0c4c2b8c,
+      type: 3}
+  - name: Orb of Venom
+    description: 
+    type: 3
+    sprite: {fileID: 21300000, guid: 95ea896573096b04fa17b0572613e415, type: 3}
+    condition: 2
+    script: {fileID: 3290331075222342588, guid: 4ca738ffcbf619544ae24dca022f0b2e,
+      type: 3}
+  - name: Ring of Regen
+    description: 
+    type: 3
+    sprite: {fileID: 21300000, guid: 92ea41ffe1a8b1b449d2f1b8b3cc41e0, type: 3}
+    condition: 15
+    script: {fileID: 3528690580877340970, guid: 69a303a9ee15d054bb9b904bfb9e27a2,
+      type: 3}
+  - name: Vitality Booster
+    description: 
+    type: 3
+    sprite: {fileID: 21300000, guid: ca0dff185ce0722439c7159a6e576b27, type: 3}
+    condition: 20
+    script: {fileID: 3295665162387418113, guid: 0b719e83e7c1f57498633a985af7019d,
+      type: 3}
+  - name: Vladmir's Offering
+    description: 
+    type: 3
+    sprite: {fileID: 21300000, guid: 32111347cbf7e484ea3e2cf2f53b58ef, type: 3}
+    condition: 30
+    script: {fileID: 2484850109030062874, guid: c368d85a5ae32904699d29e4add92386,
+      type: 3}
+  - name: Blink Dagger
+    description: 
+    type: 2
+    sprite: {fileID: 21300000, guid: 235ab0bf5dcc54543a481b7a8e4ffaed, type: 3}
+    condition: 25
+    script: {fileID: 3017186559015106738, guid: 8a860ab28587bae44877ffe24648f7c0,
+      type: 3}
+  - name: Boots of Speed
+    description: 
+    type: 2
+    sprite: {fileID: 21300000, guid: 43e7536625042b6489fa76233fcea947, type: 3}
+    condition: 5
+    script: {fileID: 6721495647017687805, guid: 26b9b673947bf35419141a9006b44c9e,
+      type: 3}
+  - name: Boots of Travel
+    description: 
+    type: 2
+    sprite: {fileID: 21300000, guid: 2f8b6058345f18e48947e71b4cfa5b71, type: 3}
+    condition: 35
+    script: {fileID: 2474631896662164785, guid: 4b1938eda7081054393076327602b13e,
+      type: 3}
+  - name: Force Staff
+    description: 
+    type: 2
+    sprite: {fileID: 21300000, guid: fcc0215eaf5858043a7055924839f55b, type: 3}
+    condition: 20
+    script: {fileID: 3536278093849760992, guid: 5d9b6e95417ce934eb57c82c3e144b5f,
+      type: 3}
+  - name: Guardian Greaves
+    description: 
+    type: 2
+    sprite: {fileID: 21300000, guid: 76d2d68e5dc27c743962d61da20057fd, type: 3}
+    condition: 25
+    script: {fileID: 7908802093568651561, guid: 4cbfcf664be54134992e50568eb83fe8,
+      type: 3}
+  - name: Phase Boots
+    description: 
+    type: 2
+    sprite: {fileID: 21300000, guid: 76d2d68e5dc27c743962d61da20057fd, type: 3}
+    condition: 15
+    script: {fileID: 3617740252587095919, guid: ff06af78136c7f141afbf339b6ef4601,
+      type: 3}
+  - name: Tranquil Boots
+    description: 
+    type: 2
+    sprite: {fileID: 21300000, guid: 00b1d93c8b5ac1b4aa7e32ee106b924b, type: 3}
+    condition: 15
+    script: {fileID: 1142227905233651862, guid: 9dc7f47e4622cd74cbdf8ccee6bd1a95,
+      type: 3}

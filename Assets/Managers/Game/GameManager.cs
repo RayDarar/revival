@@ -20,6 +20,8 @@ public class GameManager : GenericManager<GameManager> {
   [HideInInspector]
   public PlayerData playerData = new PlayerData();
 
+  public ArtifactDefinition[] artifacts;
+
   public void GameOver() {
     Debug.Log("Game Over");
 

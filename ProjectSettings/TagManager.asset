@@ -16,6 +16,8 @@ TagManager:
   - RewardSlot
   - RewardContainer
   - Enemies
+  - ArtifactContainer
+  - ArtifactSlot
   layers:
   - Default
   - TransparentFX

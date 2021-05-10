@@ -283,5 +283,9 @@ public class PlayerController : MonoBehaviour {
   #region Coins
   [HideInInspector]
   public int coins;
+
+  public void AddCoins(int amount) {
+    coins += amount;
+  }
   #endregion
 }
